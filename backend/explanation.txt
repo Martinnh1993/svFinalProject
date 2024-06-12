@@ -1,0 +1,2 @@
+In this folder in the repository you can see all my backend files for my final project on computer science with social vibes
+Keep in mind this is not a running version this is just the files
