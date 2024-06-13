@@ -1,0 +1,100 @@
+ion-title {
+    color: #00A2AD;
+    font-size: 1.25rem;
+    font-family: 'Cabin';
+    font-weight: 700;
+  }
+  
+  ion-button {
+    text-transform: none;
+  
+  }
+
+  .searchbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .searchbar {
+    width: 90%;
+  }
+  
+  ion-searchbar.searchbar {
+    border: 1px solid #00A2AD !important;
+    border-radius: 10px !important;
+    color: #00A2AD !important;
+    height: 35px !important;
+    margin-top: 10px;
+    --background: transparent;
+  }
+  
+  .sc-ion-searchbar-md-h {
+    --box-shadow: none !important;
+  }
+
+  ion-item.selected-location {
+    --background: #E6F6F7 !important;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+
+    h2 {
+      font-family: Open Sans;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 19.07px;
+      text-align: left;
+      color: #00A2AD;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+    h3 {
+      font-family: Open Sans;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 19.07px;
+      text-align: left;
+      color: #231F20;
+      margin-top: 5px;
+    }
+    ion-button {
+      position: absolute;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      right: 10px;
+      top: 20%;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  ion-item.location {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    h2 {
+      font-family: Open Sans;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 19.07px;
+      text-align: left;
+      color: #00A2AD;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+    h3 {
+      font-family: Open Sans;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 19.07px;
+      text-align: left;
+      color: #231F20;
+      margin-top: 5px;
+    }
+  }
+  
+
+  

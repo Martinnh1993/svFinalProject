@@ -1,0 +1,94 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    color: var(--ion-color-primary);
+    padding: 2px;
+  
+    h1 {
+        font-size: 20px;
+        margin: 0;
+        line-height: 24.3px;
+    }
+    h2{
+        font-size: 12px;
+        margin: 5px 0 0 0;
+        line-height: 16.34px;
+    }
+}
+
+.searchbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.searchbar {
+    width: 90%;
+}
+  
+ion-searchbar.searchbar {
+    border: 1px solid #00A2AD !important;
+    border-radius: 10px !important;
+    color: #00A2AD !important;
+    height: 35px !important;
+    margin-top: 10px;
+    --background: transparent;
+}
+  
+.sc-ion-searchbar-md-h {
+    --box-shadow: none !important;
+}
+
+.joined-card {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+    .container  {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        gap: 10px;
+
+        img {
+            width: 25%;
+            border-radius: 50%;
+            aspect-ratio: 1;
+            border: 2px solid var(--ion-color-primary);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h2 {
+                margin: 0;
+                padding: 0;
+                font-size: 16px;
+                color: #00A2AD;
+                
+            }
+            h3 {
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
+                color: #00A2AD;
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    width: 10%;
+
+    h4 {
+        font-size: 12px;
+        color: #00A2AD;
+    } 
+}

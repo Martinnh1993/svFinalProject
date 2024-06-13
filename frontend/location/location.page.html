@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="secondary-contrast">
+    <ion-button slot="start" class="back" fill="clear" color="primary" (click)="close()">
+      <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.0019 0.984688C10.5119 0.494687 9.72189 0.494687 9.23189 0.984688L0.921895 9.29469C0.531895 9.68469 0.531895 10.3147 0.921895 10.7047L9.23189 19.0147C9.72189 19.5047 10.5119 19.5047 11.0019 19.0147C11.4919 18.5247 11.4919 17.7347 11.0019 17.2447L3.76189 9.99469L11.0119 2.74469C11.4919 2.26469 11.4919 1.46469 11.0019 0.984688Z" fill="#00A2AD"/>
+        </svg>
+    </ion-button>        
+    <ion-title class="ion-text-center">Locations</ion-title>
+    <ion-button class="upload" slot="end" icon="null" fill="clear" (click)="select(); ">Select</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="searchbar-container">
+    <ion-searchbar
+      (ionChange)="onSearchChange($event)"
+      (ionClear)="clearPlaces()"
+      animated="true"
+      placeholder="Enter address"
+      show-clear-button="focus"
+      debounce="400"
+      color="#00A2AD"
+      class="searchbar"
+      >
+    </ion-searchbar>
+  </div>
+  
+  <ion-item class="selected-location" *ngIf="selectedLocation">
+    <div style="padding: 0 10px; width: 100%;">
+      <h2>
+        {{ selectedLocation.street }}, {{ selectedLocation.city }}, {{ selectedLocation.country }}
+      </h2>
+      
+      <h3 *ngIf="selectedLocation.distance === null">Current location</h3>
+      <h3 *ngIf="selectedLocation.distance != null">{{ selectedLocation.distance }} km away</h3>
+  
+      <ion-button *ngIf="selectedLocation.distance != null" fill="clear" slot="end" (click)="goBackToCurrentLocation()">
+        <span class="material-symbols-outlined">close</span>
+      </ion-button>
+    </div>
+  </ion-item>
+  
+  <ion-list *ngIf="places && places.length > 0">
+    <ion-item class="location" *ngFor="let place of places" (click)="selectLocation(place)">
+      <div style="padding: 0 10px; width: 100%">
+        <h2>
+          {{ place.street }}, {{ place.city }}, {{ place.country }}
+        </h2>
+        <h3 *ngIf="place.distance === null">Current location</h3>
+        <h3 *ngIf="place.distance != null">{{ place.distance }} km away</h3>
+      </div>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

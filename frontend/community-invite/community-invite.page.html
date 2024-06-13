@@ -1,0 +1,52 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="secondary-contrast">
+      <ion-title slot="start">Invite friends</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close" color="primary"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ng-container>
+    <div class="searchbar-container">
+      <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchFriend($event)" animated="true"
+        placeholder="Search for a friend" show-clear-button="focus" color="#00A2AD" class="searchbar" />
+    </div>
+
+    <ion-list>
+      <ion-item
+        lines="none"
+        class="friends-ion-item"
+        *ngFor="let User of filteredFriendsData; let i = index"
+      >
+        <ion-avatar
+          slot="start"
+        >
+          <img
+            alt="Silhouette"
+            [src]="User.imageUrl  || './../../assets/placeholder.png'"
+          />
+        </ion-avatar>
+          
+      <div>
+        <ion-label
+          class="add-friends"
+          color="primary"
+          >{{ User.username }}</ion-label
+        >
+      </div>
+          
+      <ion-button
+        fill="outline"
+        slot="end"
+        class="btn btn-add"
+        (click)="inviteToCommunity(User.username)"
+        >Invite</ion-button
+      >
+      </ion-item>
+    </ion-list>
+  </ng-container>
+</ion-content>

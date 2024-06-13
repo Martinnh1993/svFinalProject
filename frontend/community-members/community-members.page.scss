@@ -1,0 +1,196 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  color: var(--ion-color-primary);
+  padding: 2px;
+
+  h1 {
+      font-size: 20px;
+      margin: 0;
+      line-height: 24.3px;
+  }
+  h2{
+      font-size: 12px;
+      margin: 5px 0 0 0;
+      line-height: 16.34px;
+  }
+}
+
+.searchbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchbar {
+  width: 90%;
+}
+
+ion-searchbar.searchbar {
+  border: 1px solid #00A2AD !important;
+  border-radius: 10px !important;
+  color: #00A2AD !important;
+  height: 35px !important;
+  margin: 10px 0;
+  --background: transparent;
+}
+
+.sc-ion-searchbar-md-h {
+  --box-shadow: none !important;
+}
+
+.community-members {
+  margin: 0 2rem;
+
+  .members-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
+    gap: 10px; 
+
+    .members-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 25px;
+      
+      .member-card {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        
+        .admin {
+          color: #F6A801;
+          width: 100%;
+
+          img {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 2px solid #F6A801;
+            object-fit: cover;
+          }
+          
+          .username-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+         
+            .username {
+              display: flex;
+              align-items: baseline;
+              margin-top: 5px;
+              justify-content: center;
+
+              h1 {
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 18ch;
+              }
+            } 
+
+            h2 {
+              font-size: 12px;
+              margin: 0;
+              padding: 0;
+              color: #B6B6B6;
+            }
+          }  
+        }
+
+        .moderator {
+          color: var(--ion-color-primary);
+          width: 100%;
+
+          img {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 2px solid var(--ion-color-primary);
+            object-fit: cover;
+          }
+          
+          .username-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+         
+            .username {
+              display: flex;
+              align-items: baseline;
+              margin-top: 5px;
+              justify-content: center;
+
+              h1 {
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 18ch;
+              }
+            } 
+
+            h2 {
+              font-size: 12px;
+              margin: 0;
+              padding: 0;
+              color: #B6B6B6;
+            }
+          }  
+        }
+
+        .member {
+          color: #7BCCD1;
+          width: 100%;
+          text-align: center;
+
+          img {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 2px solid #7BCCD1;
+            object-fit: cover;
+          }
+
+          .username-container {
+            display: flex;
+            flex-direction: column;
+         
+            .username {
+              display: flex;
+
+              h1 {
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 20ch;
+              }
+            } 
+
+            h2 {
+              font-size: 12px;
+              margin: 0;
+              padding: 0;
+              color: #B6B6B6;
+            }
+          }  
+        }
+        
+      }
+    }
+  }
+}

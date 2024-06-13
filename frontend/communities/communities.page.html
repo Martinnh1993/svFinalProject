@@ -1,0 +1,57 @@
+<ion-content class="feed-page">
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="secondary-contrast">
+      <ion-back-button
+        class="btnBack"
+        slot="start"
+        text=""
+        fill="clear"
+        name="chevron-back-sharp"
+        color="primary"
+        defaultHref="tabs/feed"
+      />
+      <ion-title class="cabin700" color="primary"> Communities </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="communities">
+    <div class="community-header">
+      <h1 class="openSans600">New communities</h1>
+
+      <ion-button fill="none" class="openSans400" (click)="openCommunitiesOverview()">See all >></ion-button>
+    </div>
+
+    <div class="community">
+      <div class="community-card" (click)="openCommunityPopup()">
+        <svg width="74" height="74" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="72" height="72" rx="36" fill="#E6F6F7" stroke="#00A2AD" stroke-width="2"/>
+          <path d="M21 36.9974L53 36.9974M37 21L37 53" stroke="#00A2AD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <ion-label class="openSans400">Make new</ion-label>
+      </div>
+      
+      <div *ngFor="let community of communities" class="community-card" (click)="openCommunity(community.id)">
+        <img [src]="community.imagePath || '../../../assets/dummy-images/default.png'">
+        <ion-label class="openSans400">{{ community.name }}</ion-label>
+      </div>      
+    </div>
+  </div>
+
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label class="openSans600">Joined communities</ion-label>
+    </ion-list-header>
+      <ion-item *ngFor="let community of myCommunities" class="joined-card" (click)="openCommunity(community.id)">
+        <div class="container">
+          <img [src]="community.imagePath || '../../../assets/dummy-images/denmark.png'">
+          <div class="content">
+            <h2>{{ community.name }}</h2>
+            <h3><!-- {{ community.postCount }} --> New posts</h3>
+          </div>
+        </div>
+        <div class="time">
+          <h4 class="openSans400">{{ community.createdDate }}</h4>
+        </div>
+      </ion-item>
+  </ion-list>
+</ion-content>

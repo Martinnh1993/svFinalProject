@@ -1,0 +1,181 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    color: var(--ion-color-primary);
+    padding: 2px;
+  
+    h1 {
+        font-size: 20px;
+        margin: 0;
+        line-height: 24.3px;
+    }
+    h2{
+        font-size: 12px;
+        margin: 5px 0 0 0;
+        line-height: 16.34px;
+    }
+  }
+
+ion-list {
+    padding: 0;
+    margin: 0;
+  
+    ion-item {
+        --padding-start: 0;
+        --inner-padding-end: 0;
+
+        .notifications {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 8px 20px;
+
+            h4 {
+                color: var(--ion-color-primary);
+                font-size: 15px;
+            }
+
+            ion-toggle {
+                height: 1.1875rem;
+                width: 2.1875rem;
+                border-radius: 80px;
+                --handle-width: 0.875rem;
+                --handle-height: 0.875rem;
+                --track-background: #ddd;
+                --track-background-checked: #00A2AD;
+                --handle-background: #fff;
+                --handle-background-checked: #fff;
+            }
+        }
+
+        .edit {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: black;
+                font-size: 15px;
+            }
+        }
+
+        .invite {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: black;
+                font-size: 15px;
+            }
+        }
+
+        .members {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: black;
+                font-size: 15px;
+            }
+        }
+
+        .settings {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            padding: 8px 20px;
+            
+            .right-side {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                h4 {
+                    color: black;
+                    font-size: 15px;
+                }
+            }   
+        }
+
+        .feedback {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            padding: 8px 20px;
+            
+            .right-side {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                h4 {
+                    color: black;
+                    font-size: 15px;
+                }
+            }   
+        }
+
+        .share {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: black;
+                font-size: 15px;
+            }
+        }
+
+        .report {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: #FF4242;
+                font-size: 15px;
+            }
+        }
+
+        .delete {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: #FF4242;
+                font-size: 15px;
+            }
+        }
+
+        .leave {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 20px;
+            gap: 10px;
+
+            h4 {
+                color: #FF4242;
+                font-size: 15px;
+            }
+        }
+    }
+}

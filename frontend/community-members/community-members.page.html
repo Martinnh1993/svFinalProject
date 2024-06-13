@@ -1,0 +1,85 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="secondary-contrast">
+      <ion-back-button
+        class="btnBack"
+        slot="start"
+        text=""
+        fill="clear"
+        name="chevron-back-sharp"
+        color="primary"
+        [defaultHref]="defaultHref"
+        />
+        <ion-title class="header">
+          <h2 class="openSans400">{{communityName}}</h2>
+          <h1 class="cabin700">Members</h1>
+        </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div class="searchbar-container">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchMembers()" animated="true"
+      placeholder="Search for a member" show-clear-button="focus" color="#00A2AD" class="searchbar" />
+  </div>
+  
+  
+  <ng-container *ngIf="groupedCommunityUsers && groupedCommunityUsers.length">
+    <div class="community-members">
+      <div class="members-grid">
+        <div *ngFor="let userGroup of groupedCommunityUsers" class="members-row">
+          <div *ngFor="let user of userGroup" class="member-card" (click)="openOptions(user)">
+            
+            <div *ngIf="user.role" [ngClass]="getRoleClass(user.role)">
+              <img loading="lazy" [src]="user?.imageUrl || user?.profilePic" alt="Profile picture"/>
+              <div class="username-container">
+                <div class="username">
+                  <h1>
+                    {{ user.username }} 
+                    <ng-container *ngIf="user.role == 2">
+                      <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.15747 0.270088L6.19375 2.46179C6.26418 2.59811 6.38491 2.70298 6.53582 2.72395L8.85991 3.0805C9.23217 3.13293 9.38308 3.61531 9.11143 3.89845L7.43125 5.60776C7.32058 5.71263 7.27028 5.88041 7.30046 6.02723L7.69284 8.43914C7.7532 8.82715 7.36083 9.13126 7.02881 8.9425L4.96631 7.78898C4.83552 7.71557 4.67454 7.71557 4.54375 7.78898L2.47119 8.92153C2.13918 9.11029 1.73674 8.80618 1.80716 8.41817L2.19954 6.00626C2.22972 5.84896 2.17942 5.69166 2.06875 5.58679L0.388565 3.87748C0.116919 3.60482 0.267834 3.12244 0.64009 3.05952L2.96418 2.70298C3.11509 2.68201 3.24588 2.58763 3.30625 2.44081L4.34253 0.249117C4.50351 -0.0864539 4.99649 -0.0864558 5.15747 0.270088Z" fill="#F6A801"/>
+                      </svg>
+                    </ng-container>
+                    <ng-container *ngIf="user.role == 3">
+                      <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.15747 0.270088L6.19375 2.46179C6.26418 2.59811 6.38491 2.70298 6.53582 2.72395L8.85991 3.0805C9.23217 3.13293 9.38308 3.61531 9.11143 3.89845L7.43125 5.60776C7.32058 5.71263 7.27028 5.88041 7.30046 6.02723L7.69284 8.43914C7.7532 8.82715 7.36083 9.13126 7.02881 8.9425L4.96631 7.78898C4.83552 7.71557 4.67454 7.71557 4.54375 7.78898L2.47119 8.92153C2.13918 9.11029 1.73674 8.80618 1.80716 8.41817L2.19954 6.00626C2.22972 5.84896 2.17942 5.69166 2.06875 5.58679L0.388565 3.87748C0.116919 3.60482 0.267834 3.12244 0.64009 3.05952L2.96418 2.70298C3.11509 2.68201 3.24588 2.58763 3.30625 2.44081L4.34253 0.249117C4.50351 -0.0864539 4.99649 -0.0864558 5.15747 0.270088Z" fill="#00a2ad"/>
+                      </svg>
+                    </ng-container>
+                  </h1>
+                </div>
+                <h2>{{ getRoleClass(user.role) }}</h2>
+              </div>                                  
+            </div>
+
+            <!-- <div *ngIf="user.role == 3" class="moderator">
+              <img loading="lazy" [src]="user?.imageUrl || user?.profilePic" alt="Profile picture"/>
+              <div class="username-container">
+                <div class="username">
+                  <h1>
+                    {{ user.username }} 
+                    <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.15747 0.270088L6.19375 2.46179C6.26418 2.59811 6.38491 2.70298 6.53582 2.72395L8.85991 3.0805C9.23217 3.13293 9.38308 3.61531 9.11143 3.89845L7.43125 5.60776C7.32058 5.71263 7.27028 5.88041 7.30046 6.02723L7.69284 8.43914C7.7532 8.82715 7.36083 9.13126 7.02881 8.9425L4.96631 7.78898C4.83552 7.71557 4.67454 7.71557 4.54375 7.78898L2.47119 8.92153C2.13918 9.11029 1.73674 8.80618 1.80716 8.41817L2.19954 6.00626C2.22972 5.84896 2.17942 5.69166 2.06875 5.58679L0.388565 3.87748C0.116919 3.60482 0.267834 3.12244 0.64009 3.05952L2.96418 2.70298C3.11509 2.68201 3.24588 2.58763 3.30625 2.44081L4.34253 0.249117C4.50351 -0.0864539 4.99649 -0.0864558 5.15747 0.270088Z" fill="#00a2ad"/>
+                    </svg>
+                  </h1>
+                </div>
+                <h2>Moderator</h2>
+              </div>  
+            </div>
+            
+            <div *ngIf="user.role == 4" class="member">
+              <img loading="lazy" [src]="user?.imageUrl || user?.profilePic" alt="Profile picture"/>
+              <div class="username-container">
+                <div class="username">
+                  <h1>{{ user.username }}</h1>              
+                </div>
+                <h2>2 mutuale friends</h2>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+  </div>
+  
+    </ng-container>
+  
+</ion-content>

@@ -1,0 +1,96 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="secondary-contrast">
+      <ion-back-button
+        class="btnBack"
+        slot="start"
+        text=""
+        fill="clear"
+        name="chevron-back-sharp"
+        color="primary"
+        defaultHref="tabs/feed/communities"
+      />
+      <ion-title class="cabin700" color="primary"> Create a community </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form #form="ngForm" (ngSubmit)="createOrUpdateCommunity(form)">
+    <ion-list lines="none">
+      <ion-item>
+        <div class="image-community-container">
+          <div class="image-container" (click)="openGallery('logo')">
+            <!-- Display the image if it exists -->
+            <img *ngIf="community.image != null" [src]="community.image" alt="Community Image">
+            
+            <!-- Only show the SVG and label if no image is set -->
+            <ng-container *ngIf="community.image == null">
+              <svg width="74" height="74" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="72" height="72" rx="36" fill="#E6F6F7" stroke="#00A2AD" stroke-width="2"/>
+                <path d="M21 36.9974L53 36.9974M37 21L37 53" stroke="#00A2AD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <ion-label class="openSans600">Add photo</ion-label>
+            </ng-container>
+          </div>
+          
+          <div class="input-container">
+            <ion-label position="stacked" class="openSans700">Community name *</ion-label>
+            <ion-input  type="text" [(ngModel)]="community.name" name="communityName" placeholder="Insert a name here..." rows="1"></ion-input>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <div class="banner-container" (click)="openGallery('banner');">
+          <!-- Display the banner image if it exists -->
+          <img *ngIf="community.banner" [src]="community.banner" class="banner" alt="Community Banner">
+        
+          <!-- Only show the SVG and label if no banner image is set -->
+          <ng-container *ngIf="!community.banner">
+            <div class="banner-svg-container">
+              <svg width="100px" height="100px" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="47" y="10" width="6" height="80" fill="#00A2AD" rx="3"/>
+                <rect x="10" y="47" width="80" height="6" fill="#00A2AD" rx="3"/>
+              </svg>                 
+            </div>                
+            <ion-label class="openSans600">Add banner</ion-label>
+          </ng-container>
+        </div>
+        
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked" class="openSans700">About community *</ion-label>
+        <ion-textarea [(ngModel)]="community.about" name="communityAbout" name="communityAbout" placeholder="Write a little bit about your community..." rows="6"></ion-textarea>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="stacked" class="openSans700">Location</ion-label>
+        <ion-input 
+          type="text"
+          readonly
+          [value]="formattedLocation"
+          (click)="openLocation()"
+          placeholder="Insert a location here..."
+        />
+      </ion-item>      
+
+      <ion-item>
+        <div class="community-visability">
+          <ion-label position="stacked" class="openSans700">Closed community</ion-label>
+          <ion-toggle  [(ngModel)]="community.closed" name="communityClosed" [checked]="false"></ion-toggle>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <div class="invite-status">
+          <ion-label position="stacked" class="openSans700">Invites only</ion-label>
+          <ion-toggle  [(ngModel)]="community.invite" name="communityInvite" [checked]="false"></ion-toggle>
+        </div>
+      </ion-item>
+      
+      <ion-item>
+        <ion-button type="submit">Submit</ion-button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

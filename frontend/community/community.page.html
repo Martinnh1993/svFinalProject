@@ -1,0 +1,231 @@
+<ion-content class="feed-page">
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="secondary-contrast">
+      <ion-back-button
+        class="btnBack"
+        slot="start"
+        text=""
+        fill="clear"
+        name="chevron-back-sharp"
+        color="primary"
+        defaultHref="tabs/feed/communities"
+        />
+        <ion-title class="header">
+          <h2 class="openSans400">Communities</h2>
+          <h1 class="cabin700">{{community?.name}}</h1>
+        </ion-title>
+        <ion-button
+          class="btnOptions"
+          slot="end"
+          fill="clear"
+          (click)="openOptions()"
+        >
+        <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M7.5 13C6.125 13 5 14.125 5 15.5C5 16.875 6.125 18 7.5 18C8.875 18 10 16.875 10 15.5C10 14.125 8.875 13 7.5 13ZM22.5 13C21.125 13 20 14.125 20 15.5C20 16.875 21.125 18 22.5 18C23.875 18 25 16.875 25 15.5C25 14.125 23.875 13 22.5 13ZM15 13C13.625 13 12.5 14.125 12.5 15.5C12.5 16.875 13.625 18 15 18C16.375 18 17.5 16.875 17.5 15.5C17.5 14.125 16.375 13 15 13Z" fill="#00A2AD"/>
+        </svg>          
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+  
+  <div class="tabs">  
+      <ion-segment class="activeTab" [(ngModel)]="activeTab">
+        <ion-segment-button value="feed">
+          <ion-label class="openSans600">Feed</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="about">
+          <ion-label class="openSans600">About</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="adventures">
+          <ion-label class="openSans600">Adventures</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="chat">
+          <ion-label class="openSans600">Chat</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    
+    <div class="banner-container">
+      <img class="banner" [src]="community?.bannerPath || 'https://s3-alpha-sig.figma.com/img/36b8/8799/5b4604c01aa90cf94de82c40bd866d18?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kaRuTcnd1WozQ-5WNZH0NLDelZV7~A-1emqcvgnZ4NHaTdof66Nb3fDEx123fc~h37RtpVnk2NszOAKxfo6Vp5t60cE5pHmXlKDIrTOGXX23yf5m3uHVH53VtmQMvDsy5JM-W4jCdp8UMf8U0ieFEe1eyzhzRTaWzXG2XzNZcalVZIiHIO8uyxltI6wCB5WWWWNV578IK51GxMjfsHTdO16SSNEKShtmXpyMRe8~fvlBQPPu6ZWfZSluO6zbFq2UlPDhr-4UxKiklxdYktb9jT0QIg9Ut92fvomTm~ipmNY7bAR54ueR2TYIvmMofBnKx3hcmzD9OCA2BbkPPg99Gg__'">
+      <img class="icon" [src]="community?.imagePath || '../../../assets/dummy-images/default.png'">
+    </div>
+  
+    <div class="indent">
+  
+      <ng-container *ngIf="activeTab === 'feed'">
+        <div class="feed">
+         
+          <div class="new-post">
+            <div class="input">
+
+              <ion-avatar>
+                <img loading="lazy" [src]="myProfilePicUrl || myProfilePic" alt="Profile picture"/>
+              </ion-avatar>
+              
+              <ion-item class="input-item">
+                <ion-textarea
+                placeholder="Type something here"
+                [autoGrow]="true"
+                maxlength="2200"
+                rows="1"
+                value=""
+                [(ngModel)]="newPost.description"
+                >     
+                </ion-textarea>
+                
+                <ion-button slot="end" fill="clear" (click)="submitPost()">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.67124 20.4005L21.1212 12.9205C21.9312 12.5705 21.9312 11.4305 21.1212 11.0805L3.67124 3.60051C3.01124 3.31051 2.28124 3.80051 2.28124 4.51051L2.27124 9.12051C2.27124 9.62051 2.64124 10.0505 3.14124 10.1105L17.2712 12.0005L3.14124 13.8805C2.64124 13.9505 2.27124 14.3805 2.27124 14.8805L2.28124 19.4905C2.28124 20.2005 3.01124 20.6905 3.67124 20.4005Z" fill="#00A2AD"/>
+                  </svg>  
+                </ion-button>
+              </ion-item>
+            </div>
+            <div class="break"></div>
+
+            <ion-buttons class="options" (click)="openGalleryForPost()">
+              <ion-button>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.75 9V1.5C12.75 0.8125 12.1875 0.25 11.5 0.25H4C3.3125 0.25 2.75 0.8125 2.75 1.5V9C2.75 9.6875 3.3125 10.25 4 10.25H11.5C12.1875 10.25 12.75 9.6875 12.75 9ZM6.125 6.83125L7.14375 8.19375L8.75625 6.18125C8.88125 6.025 9.11875 6.025 9.24375 6.18125L11.0938 8.49375C11.2563 8.7 11.1125 9 10.85 9H4.625C4.36875 9 4.21875 8.70625 4.375 8.5L5.625 6.83125C5.75 6.66875 6 6.66875 6.125 6.83125ZM0.25 3.375V11.5C0.25 12.1875 0.8125 12.75 1.5 12.75H9.625C9.96875 12.75 10.25 12.4688 10.25 12.125C10.25 11.7812 9.96875 11.5 9.625 11.5H2.125C1.78125 11.5 1.5 11.2188 1.5 10.875V3.375C1.5 3.03125 1.21875 2.75 0.875 2.75C0.53125 2.75 0.25 3.03125 0.25 3.375Z" fill="#F9F7F6"/>
+                </svg>                  
+                Picture
+              </ion-button>
+              
+              <ion-button>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_9083_44361)">
+                  <path d="M5.29689 13.0297C4.95324 13.0297 4.61954 12.8942 4.36255 12.6375C3.9847 12.2597 3.86949 11.7155 4.0624 11.2171L5.79726 6.70647C5.95896 6.28977 6.28966 5.9594 6.7047 5.79803L11.217 4.0625C11.7154 3.86993 12.2596 3.98514 12.6374 4.36299C13.0153 4.74084 13.1305 5.28504 12.9376 5.78342L11.2034 10.2924C11.0463 10.7078 10.7156 11.0391 10.2956 11.2022L5.78232 12.938C5.62294 12.9995 5.45859 13.0297 5.29689 13.0297ZM11.7004 5.13364C11.6809 5.13364 11.6593 5.13729 11.6357 5.14659L7.12306 6.88211C7.0115 6.92528 6.92484 7.01194 6.88101 7.12516L5.14648 11.6351C5.11361 11.7205 5.1488 11.7802 5.18433 11.8158C5.21986 11.8513 5.27962 11.8865 5.36396 11.8539L9.87626 10.1184C9.98949 10.0746 10.0751 9.98992 10.1163 9.88069L10.1176 9.8767L11.8528 5.36506C11.8857 5.27973 11.8505 5.21996 11.815 5.18444C11.7894 5.15887 11.7516 5.13364 11.7004 5.13364Z" fill="#F9F7F6"/>
+                  <path d="M8.5 0C3.80574 0 0 3.80574 0 8.5C0 13.1943 3.80574 17 8.5 17C13.1943 17 17 13.1943 17 8.5C17 3.80574 13.1943 0 8.5 0ZM8.5 15.9378C4.39211 15.9378 1.06217 12.6079 1.06217 8.5C1.06217 4.39211 4.39211 1.06217 8.5 1.06217C12.6079 1.06217 15.9378 4.39211 15.9378 8.5C15.9378 12.6079 12.6079 15.9378 8.5 15.9378Z" fill="#F9F7F6"/>
+                  <path d="M8.5 9.26844C8.9247 9.26844 9.26899 8.92415 9.26899 8.49945C9.26899 8.07475 8.9247 7.73047 8.5 7.73047C8.0753 7.73047 7.73102 8.07475 7.73102 8.49945C7.73102 8.92415 8.0753 9.26844 8.5 9.26844Z" fill="#F9F7F6"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_9083_44361">
+                  <rect width="17" height="17" fill="white"/>
+                  </clipPath>
+                  </defs>
+                </svg>                  
+                Activity
+              </ion-button>
+              
+              <ion-button>
+                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 1.33398C5.08125 1.33398 3.125 3.42065 3.125 6.00065C3.125 9.50065 7.5 14.6673 7.5 14.6673C7.5 14.6673 11.875 9.50065 11.875 6.00065C11.875 3.42065 9.91875 1.33398 7.5 1.33398ZM7.5 7.66732C6.6375 7.66732 5.9375 6.92065 5.9375 6.00065C5.9375 5.08065 6.6375 4.33398 7.5 4.33398C8.3625 4.33398 9.0625 5.08065 9.0625 6.00065C9.0625 6.92065 8.3625 7.66732 7.5 7.66732Z" fill="#F9F7F6"/>
+                </svg>                  
+                Event
+              </ion-button>
+            </ion-buttons>
+          </div>
+
+          <div class="request" *ngIf="communityRequests.length != 0 && myRole == 2 || myRole == 3">
+            <div class="request-header-container">
+              <div class="request-header">
+                <h1 class="openSans600">Requests to join</h1>
+                <h3 class="openSans400" (click)="openMembersPage()">See all >></h3>
+              </div>
+              <h2>{{communityRequests.length}} people</h2>
+            </div>
+            <div class="request-container">
+              <div *ngFor="let user of communityRequests" class="request-card">
+                <img loading="lazy" [src]="user.imageUrl || user.profilePic" alt="Profile picture"/>
+                <ion-label class="openSans400">{{ user.username }}</ion-label>
+                
+                <div class="actions"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" class="confirm" viewBox="0 0 512 512" (click)="confirm(user)">
+                    <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="currentColor" stroke="white" stroke-miterlimit="10" stroke-width="30"/>
+                    <path fill="currentColor" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M352 176L217.6 336 160 272"/>
+                  </svg>
+                  
+                  <svg xmlns="http://www.w3.org/2000/svg" class="deny" viewBox="0 0 512 512" (click)="deny(user)">
+                    <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="currentColor" stroke="white" stroke-miterlimit="10" stroke-width="30"/>
+                    <path fill="currentColor" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M320 320L192 192M192 320l128-128"/>
+                  </svg>
+                </div>
+              </div>
+            </div> 
+          </div>  
+
+          <h1 class="openSans600">Community posts</h1>
+
+          <ion-list lines="none" class="post">
+            <ion-item *ngFor="let post of communityPosts" style="--padding-start: 0; --inner-padding-end: 0">
+              <div class="post-card">
+                <ion-avatar>
+                  <img [src]="post.user.imageUrl" alt="Post Image">
+                </ion-avatar>
+
+                <div class="post-container">
+                  <div class="post-header">
+                    <h2 class="openSans600">{{ community.name }}</h2>
+                    <svg width="12" height="3" viewBox="0 0 12 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.5 0C0.675 0 0 0.675 0 1.5C0 2.325 0.675 3 1.5 3C2.325 3 3 2.325 3 1.5C3 0.675 2.325 0 1.5 0ZM10.5 0C9.675 0 9 0.675 9 1.5C9 2.325 9.675 3 10.5 3C11.325 3 12 2.325 12 1.5C12 0.675 11.325 0 10.5 0ZM6 0C5.175 0 4.5 0.675 4.5 1.5C4.5 2.325 5.175 3 6 3C6.825 3 7.5 2.325 7.5 1.5C7.5 0.675 6.825 0 6 0Z" fill="#1C1D26"/>
+                    </svg>                    
+                  </div>
+
+                  <div class="post-user">
+                    <h4 class="openSans600">@{{ post.user.username }} </h4> 
+                    <h5 class="openSans400"> {{ getTimeSince(post.date) }} </h5>
+                  </div>
+                    
+                  <p>{{ post.description }}</p>
+                  <img [src]="post.imagePath" alt="Post Image" *ngIf="post.imagePath != null">
+                </div>
+              </div>
+            </ion-item>
+          </ion-list>
+          
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab === 'about'">
+        <div class="about">
+         
+          <div class="location">
+            <h1 class="openSans600">Location</h1>
+            <h2 class="openSans400">{{community.location.street + ', ' + community.location.city + ', ' + community.location.country}}</h2>  
+          </div>
+          
+
+          <div class="about-container">
+            <h1 class="openSans600">About</h1>
+            <p class="openSans400">{{community.description}}</p>
+          </div>
+  
+          <div class="group-type">
+            <h1 class="openSans600" *ngIf="community.isPrivate">Private group</h1>
+            <h1 class="openSans600" *ngIf="!community.isPrivate">Public group</h1>
+            <h2 class="openSans400" *ngIf="community.isClosed">This group is invite only</h2>
+          </div>
+
+          <div class="members">
+            <div class="members-header">
+              <h1 class="openSans600">Members</h1>
+              <h3 class="openSans400" (click)="openMembersPage()">See all >></h3>
+            </div>
+            <h2 class="openSans400" *ngIf="communityUsers.length != 1">{{communityUsers.length }} people</h2>
+            <h2 class="openSans400" *ngIf="communityUsers.length == 1">{{communityUsers.length }} person</h2>
+          
+            <div class="community">
+              <div class="community-card" *ngFor="let user of communityUsers; let i = index">
+                <img loading="lazy" 
+                [src]="user?.imageUrl || user?.profilePic" 
+                alt="Profile picture" />
+                <ion-label class="openSans400">{{ user.username }}</ion-label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab === 'adventures'">
+        <div class="adventures">
+         
+          <h1>This is adventures</h1>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab === 'chat'">
+        <div class="chat">
+         
+          <h1>This is chat</h1>
+        </div>
+      </ng-container>
+    </div>

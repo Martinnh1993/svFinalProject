@@ -1,0 +1,40 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="secondary-contrast">
+      <ion-back-button
+        class="btnBack"
+        slot="start"
+        text=""
+        fill="clear"
+        name="chevron-back-sharp"
+        color="primary"
+        defaultHref="tabs/feed/communities"
+        />
+        <ion-title class="header">
+          <h2 class="openSans400">Communities</h2>
+          <h1 class="cabin700">Discover</h1>
+        </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="searchbar-container">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchCommunities()" animated="true"
+      placeholder="Search for a community" show-clear-button="focus" color="#00A2AD" class="searchbar" />
+  </div>
+
+  <ion-list lines="none">
+    <ion-item *ngFor="let community of communities" class="joined-card">
+      <div class="container" 
+           (click)="community.isClosed ? openRequestPopup(community.id) : openJoinPopup(community.id)">
+        <img [src]="community.imagePath || '../../../assets/dummy-images/denmark.png'">
+        <div class="content">
+          <h2>{{ community.name }}</h2>
+          <h3><!-- {{ community.postCount }} --> New posts</h3>
+        </div>
+      </div>
+      <div class="time">
+        <h4 class="openSans400">{{ community.createdDate }}</h4>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
